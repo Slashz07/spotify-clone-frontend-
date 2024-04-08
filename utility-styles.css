@@ -1,0 +1,6 @@
+.invert{
+  filter: invert(1);
+}
+.bg-elevated-base{
+  background-color: #1a1a1a;
+}
