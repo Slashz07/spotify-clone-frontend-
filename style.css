@@ -9,6 +9,7 @@ body {
   background-color: black;
   color: white;
   padding: 0.5rem;
+  overflow: hidden;
 }
 
 .container {
@@ -73,6 +74,63 @@ body {
 
 .add-library img {
   transform: scale(0.7);
+}
+
+.songList {
+  max-height: 52vh;
+  overflow: scroll;
+}
+
+.songList ul {
+  padding-right: 10px;
+}
+
+.songList ul li {
+  display: flex;
+  gap: 0.5rem;
+  list-style: decimal;
+  cursor: pointer;
+  padding: 0.7rem 0.5rem;
+  border: 1px solid white;
+  margin: 12px 0;
+  border-radius: 7px;
+  font-size: 13px;
+  align-items: center;
+  justify-content: space-between;
+  transition: all .5s ease-in-out;
+}
+
+.songList li:hover {
+  color: #1fdf64;
+  border-color: #1fdf64;
+
+}
+
+.song-info {
+  width: 20vw;
+}
+
+.songList .song-btn {
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  font-size: 11px;
+  width: 60%;
+  justify-content: flex-end;
+}
+
+.songList .song-btn .play-now {
+  height: 24px;
+  width: 23px;
+  padding: 5px 2px;
+  border-radius: 30px;
+  text-align: center;
+  border: 1px solid white;
+}
+
+.songList .song-btn .play-now img {
+  height: 12px;
+  width: 17px;
 }
 
 .left-footer {
@@ -226,17 +284,67 @@ body {
   margin-left: 11px;
 }
 
-.playback-box {
+.playBox {
+  display: flex;
   position: absolute;
   bottom: 0rem;
   width: 100%;
-  height: 4rem;
+  height: 4.5rem;
   background-color: black;
+  padding-top: 1rem;
+  gap: 2%;
+}
+
+.playBox .songStats,
+.songTools {
+  width: 24%;
+  color: white;
+}
+
+.songStats {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  transition: all .5s ease-in-out;
+}
+
+.songStats:hover {
+  color: #1fdf64;
+}
+
+.songTools {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.songStats p {
+  font-size: 13px;
+}
+
+.playBox .playBar {
+  width: 48%;
 }
 
 .playBar {
   height: 100%;
-  margin-top: 0.5rem;
+}
+
+.playBar .seekBar {
+  height: 3px;
+  width: 100%;
+  background-color: #545454;
+}
+
+.seekBar .progressMarker {
+  height: 12px;
+  width: 12px;
+  border-radius: 13px;
+  background-color: white;
+  position: relative;
+  bottom: 4.5px;
+  left: 0%;
+  transition: left .4s linear;
 }
 
 .songButtons {
@@ -244,10 +352,12 @@ body {
   gap: 2rem;
   justify-content: center;
   align-items: center;
+  margin-bottom: 11px;
 }
 
 .songButtons>img {
   height: 18px;
+  opacity: 0.9;
 }
 
 .songPlayBtn {
@@ -257,4 +367,9 @@ body {
   background-color: white;
   border-radius: 30px;
   text-align: center;
+}
+
+.songPlayBtn img {
+  height: 24px;
+  width: 18px;
 }
