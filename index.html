@@ -7,6 +7,7 @@
   <title>Spotify - Web Player: Music for everyone</title>
   <link rel="i" href="">
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./style_Media.css">
   <link rel="stylesheet" href="./utility-styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,8 +20,9 @@
   <div class="container">
     <div class="left">
       <div class="home bg-elevated-base ">
-        <div class="icons invert">
-          <img src="./assets/logo.svg" alt="">
+        <div id="left-heading" class="icons invert">
+          <img id="spotify-logo" src="./assets/logo.svg" alt="">
+          <img id="cross" src="./assets/cross.svg" alt="">
         </div>
         <ul>
           <li class="icons"><img class="invert" src="./assets/home.svg" alt="home">Home</li>
@@ -52,7 +54,8 @@
     </div>
     <div class="right bg-elevated-base">
       <header class="right-header">
-        <div class="nav-icons">
+        <div class="nav-icons"> 
+          <img class="hamBurger invert" src="./assets/hamBurger.svg" alt="">
           <img class="invert" src="./assets/back-button.svg" alt="">
           <img class="invert" src="./assets/forward-button.svg" alt="">
         </div>

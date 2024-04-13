@@ -1,0 +1,158 @@
+@media (max-width:1195px) {
+
+  .left {
+    width: 35vw
+  }
+
+  .card {
+    width: 25%;
+    height: 16rem;
+  }
+
+  .playBox {
+    bottom: -1rem;
+    height: 6.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .playBox .playBar {
+    padding-top: 1rem;
+  }
+
+  .songStats {
+    width: 32%;
+  }
+
+  .playBar {
+    width: 43%;
+  }
+
+  .songTools {
+    width: 25%;
+  }
+
+}
+
+@media (max-width:1015px) {
+
+  .left {
+    width: 42vw
+  }
+
+  .card {
+    width: 33%;
+  }
+}
+
+@media (max-width:900px) {
+
+  .left {
+    width: 51vw
+  }
+
+  .card {
+    width: 50%;
+    height: 18rem;
+  }
+}
+
+@media (max-width:785px) {
+  .left {
+    position: absolute;
+    left: -120%;
+    transition: all 0.5s ease-in-out;
+    z-index: 1;
+    background-color: black;
+    width: 370px;
+  }
+
+  #left-heading #cross {
+    display: inline-flex;
+    transform: scale(1.5);
+    cursor: pointer;
+  }
+
+  .right {
+    width: 100%;
+  }
+
+  .right-header {
+    padding-right: 0;
+  }
+
+  .nav-icons {
+    width: 11rem;
+    transform: scale(0.8);
+  }
+
+
+  .hamBurger {
+    display: inline-block;
+    margin-right: 20px;
+    transform: scale(1.7);
+    cursor: pointer;
+  }
+
+  .right-buttons {
+    transform: scale(0.8);
+  }
+
+  .card {
+    width: 33%;
+    height: 18rem;
+  }
+
+
+
+}
+
+@media (max-width:580px) {
+
+  .card {
+    width: 50%;
+    height: 20rem;
+  }
+}
+
+@media (max-width:450px) {
+
+  .playlist-container {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 100%;
+    height: 26rem;
+  }
+
+  .playBox {
+    padding: 10px 0;
+    flex-direction: column;
+    height: 7.5rem;
+  }
+
+  .playBox .songStats {
+    width: 100%;
+  }
+  .playBox .songStats p {
+    margin: auto;
+  }
+
+  .playBox .playBar {
+    width: 100%;
+  }
+    .songButtons {
+      width: 80%;
+      margin-bottom: 10px;
+    }
+    .playBar .seekBar{
+      width: 80%;
+      margin: auto;
+    }
+
+  .playBox .songTools {
+    width: 100%;
+    transform: translate(97px, -43px);
+    font-size: 13px;
+  }
+}

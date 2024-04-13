@@ -9,13 +9,10 @@ async function getSongInfo() {
   let songElements = songs.querySelectorAll('#files a');
 
   let songInfo = {
-    playSongs: [],
     songNames: []
   }
   songElements.forEach((element, index) => {
     if (index > 0) {
-
-      songInfo.playSongs.push(element.href);
 
       let songTitle = element.getAttribute("title");
       const lastSpaceIndex = songTitle.lastIndexOf('.');
@@ -31,12 +28,19 @@ async function getSongInfo() {
 
 let currentSong = new Audio()
 
-const myMusic = (song) => {
-  currentSong.src = "./songs/" + song + ".mp3"
-  let playbtnSymbol = document.querySelector("#play img")
-  playbtnSymbol.src = "./assets/playBtnSymbol-play.svg"
+const myMusic = (song, pauseSong = false) => {
 
-  currentSong.play()
+  let displayName = document.querySelector(".songStats")
+  displayName.innerHTML = `<p>${song}</p>`
+
+  currentSong.src = "./songs/" + song + ".mp3"
+  if (!pauseSong) {
+    let playbtnSymbol = document.querySelector("#play img")
+    playbtnSymbol.src = "./assets/playBtnSymbol-play.svg"
+
+    currentSong.play()
+  }
+
 }
 let runTime = (time) => {
   const min = Math.floor(time / 60)
@@ -48,10 +52,10 @@ let runTime = (time) => {
 }
 async function main() {
   let allSongs = await getSongInfo()
+  myMusic(allSongs.songNames[0], true)
 
   let songList = document.querySelector(".songList ul")
-  allSongs.playSongs.forEach((songUrl, index) => {
-    const songName = allSongs.songNames[index];
+  allSongs.songNames.forEach((songName, index) => {
     songList.innerHTML = songList.innerHTML + ` <li>
               <img class="invert" src="./assets/music-icon.svg" alt="">
               <div class="song-info">
@@ -71,21 +75,15 @@ async function main() {
     // </div>
   });
 
-  let nextSongIndex = null
+  let nextSongIndex = 1
   let prevSongIndex = null
   // setting song title beside the playbutton
-  const setName = (song) => {
-    let displayName = document.querySelector(".songStats")
-    displayName.innerHTML = `<p>${song}</p>`
-    
-  }
 
   // playing song from playlist click-->
   let mySongs = Array.from(document.querySelectorAll(".songList ul li"))
   mySongs.forEach((e, index) => {
     e.addEventListener('click', () => {
       let music = e.querySelector(".name").innerText
-      setName(music)
       myMusic(music)
       nextSongIndex = index + 1
       prevSongIndex = index - 1
@@ -98,7 +96,6 @@ async function main() {
   nextTrack.addEventListener('click', () => {
     if (nextSongIndex < mySongs.length) {
       let nextSong = mySongs[nextSongIndex].querySelector(".name").innerText
-      setName(nextSong)
       myMusic(nextSong)
     }
 
@@ -115,7 +112,6 @@ async function main() {
   prevTrack.addEventListener('click', () => {
     if (prevSongIndex >= 0) {
       let prevSong = mySongs[prevSongIndex].querySelector(".name").innerText
-      setName(prevSong)
       myMusic(prevSong)
     }
     nextSongIndex = prevSongIndex + 1
@@ -128,7 +124,7 @@ async function main() {
   let playbtn = document.querySelector("#play")
   let playbtnSymbol = document.querySelector("#play img")
   playbtn.addEventListener('click', () => {
-    if (currentSong.paused&& currentSong.src.length!=0) {
+    if (currentSong.paused && currentSong.src.length != 0) {
       currentSong.play()
       playbtnSymbol.src = "./assets/playBtnSymbol-play.svg"
     } else {
@@ -139,13 +135,39 @@ async function main() {
 
 
   // timeUpdate-->
- 
-  let songDuration = document.querySelector(".songTools")
-  // songDuration.innerHTML = `<p>${currentSong.duration}</p>`
-  currentSong.addEventListener("timeupdate", () => {
-    songDuration.innerHTML = `<p>${runTime(currentSong.currentTime)}/${runTime(currentSong.duration) }</p>`
+
+  let songBar = document.querySelector(".seekBar")
+  songBar.addEventListener('click', e => {
+    let barLen = e.target.getBoundingClientRect().width
+    let markerPos = e.offsetX
+    // console.log(barLen,markerPos)
+    let songPos = (markerPos / barLen) 
+    currentSong.currentTime=songPos*currentSong.duration
+    
   })
 
+  let songDuration = document.querySelector(".songTools")
+  let songBarMarker = document.querySelector(".progressMarker")
+
+  currentSong.addEventListener("timeupdate", () => {
+    songDuration.innerHTML = `<p>${runTime(currentSong.currentTime)}/${runTime(currentSong.duration)}</p>`
+    if (runTime(currentSong.currentTime) == runTime(currentSong.duration)) {
+      playbtnSymbol.src = "./assets/play-button-pause.svg"
+    }
+    songBarMarker.style.left = (currentSong.currentTime / currentSong.duration) * 100+'%'
+  })
+
+  // add menu-->
+  let menuIcon = document.querySelector(".hamBurger")
+  menuIcon.addEventListener('click', () => {
+    document.querySelector(".left").style.left = 0 + '%'
+  })
+  // remove menu-->
+  let crossIcon = document.querySelector("#cross")
+  crossIcon.addEventListener("click", () => {
+    document.querySelector(".left").style.left = -120 + '%'
+  })
 }
+
 
 main()
