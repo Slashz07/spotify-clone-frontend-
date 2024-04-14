@@ -168,6 +168,11 @@ async function main() {
   })
 
   // setting volumeBar-->
+  let volumeBar = document.querySelector(".volumeBar")
+  volumeBar.addEventListener('change', e => {
+    currentVol = e.target.value
+    currentSong.volume = parseInt(currentVol)/100
+  })
 }
 
 
