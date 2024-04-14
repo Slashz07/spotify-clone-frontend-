@@ -27,6 +27,7 @@ body {
   border: 2px solid black;
   display: flex;
   flex-direction: column;
+  z-index: 2;
 }
 
 #left-heading {
@@ -312,13 +313,10 @@ body {
   gap: 2%;
 }
 
-.playBox .songStats,
-.songTools {
-  width: 24%;
-  color: white;
-}
 
 .songStats {
+  width: 30%;
+  color: white;
   text-align: center;
   display: flex;
   align-items: center;
@@ -330,9 +328,13 @@ body {
 }
 
 .songTools {
+  color: white;
+  width: 22%;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  position: relative;
 }
 
 .songStats p {
@@ -347,14 +349,14 @@ body {
   height: 100%;
 }
 
-.playBar .seekBar {
+.seekBar {
   height: 5px;
   width: 100%;
   background-color: #545454;
   cursor: pointer;
 }
 
-.seekBar .progressMarker {
+.progressMarker {
   height: 12px;
   width: 12px;
   border-radius: 13px;
@@ -376,6 +378,7 @@ body {
 .songButtons>img {
   height: 18px;
   opacity: 0.9;
+  z-index: 1;
 }
 
 .songPlayBtn {
@@ -385,9 +388,35 @@ body {
   background-color: white;
   border-radius: 30px;
   text-align: center;
+  z-index: 1;
 }
 
 .songPlayBtn img {
   height: 24px;
   width: 18px;
+}
+
+.time {
+  position: absolute;
+  top: 12px;
+}
+
+.volume {
+  height: 35%;
+  width: 74%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: absolute;
+  top: 33px;
+}
+
+.volumeBar {
+  height: 4px;
+  width: 6rem;
+  cursor: pointer;
+}
+.volume input[type="range"]::slider-thumb {
+  width: 5px;
+  height: 5px;
 }

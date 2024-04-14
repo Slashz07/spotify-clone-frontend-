@@ -35,7 +35,7 @@ const myMusic = (song, pauseSong = false) => {
 
   currentSong.src = "./songs/" + song + ".mp3"
   if (!pauseSong) {
-    let playbtnSymbol = document.querySelector("#play img")
+    let playbtnSymbol = document.querySelector(".songPlayBtn img")
     playbtnSymbol.src = "./assets/playBtnSymbol-play.svg"
 
     currentSong.play()
@@ -77,7 +77,6 @@ async function main() {
 
   let nextSongIndex = 1
   let prevSongIndex = null
-  // setting song title beside the playbutton
 
   // playing song from playlist click-->
   let mySongs = Array.from(document.querySelectorAll(".songList ul li"))
@@ -121,8 +120,8 @@ async function main() {
   })
 
   // play/pause button-->
-  let playbtn = document.querySelector("#play")
-  let playbtnSymbol = document.querySelector("#play img")
+  let playbtn = document.querySelector(".songPlayBtn")
+  let playbtnSymbol = document.querySelector(".songPlayBtn img")
   playbtn.addEventListener('click', () => {
     if (currentSong.paused && currentSong.src.length != 0) {
       currentSong.play()
@@ -146,7 +145,7 @@ async function main() {
     
   })
 
-  let songDuration = document.querySelector(".songTools")
+  let songDuration = document.querySelector(".time")
   let songBarMarker = document.querySelector(".progressMarker")
 
   currentSong.addEventListener("timeupdate", () => {
@@ -167,6 +166,8 @@ async function main() {
   crossIcon.addEventListener("click", () => {
     document.querySelector(".left").style.left = -120 + '%'
   })
+
+  // setting volumeBar-->
 }
 
 
