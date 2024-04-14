@@ -67,7 +67,7 @@
       <div class="right-body">
         <h1>Spotify Playlists</h1>
         <div class="playlist-container">
-          <div class="card">
+          <div data-playlist="track-1" class="card">
             <img src="./assets/images/spotify-playlist-1.jpg" alt="">
             <div class="play-icon">
               <img src="./assets/play-button-pause.svg" alt="">
@@ -75,7 +75,7 @@
             <h4>Dinner with friends</h4>
             <p>The perfect soundtrack to those long nights over dinner</p>
           </div>
-          <div class="card">
+          <div data-playlist="MySpecialPlaylist" class="card">
             <img src="./assets/images/spotify-playlist-1.jpg" alt="">
             <div class="play-icon">
               <img src="./assets/play-button-pause.svg" alt="">
@@ -225,13 +225,13 @@
           <div class="time"></div>
           <div class="volume">
             <img class="invert" src="./assets/average-volume.svg" alt="">
-              <input class="volumeBar"  type="range">
-            </div>
+            <input class="volumeBar" type="range">
           </div>
-
         </div>
+
       </div>
     </div>
+  </div>
   </div>
   <script src="./script.js"></script>
 </body>

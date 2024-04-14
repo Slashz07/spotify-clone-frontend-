@@ -1,7 +1,8 @@
 @media (max-width:1195px) {
 
   .left {
-    width: 35vw
+    width: 35vw;
+    height: 99vh;
   }
 
   .card {
@@ -11,7 +12,7 @@
 
   .playBox {
     bottom: -1rem;
-    height: 6.5rem;
+    height: 4.5rem;
     padding-bottom: 0.5rem;
   }
 
@@ -184,19 +185,23 @@
     top: 52px;
     z-index: 3;
   }
-  .time{
+
+  .time {
     top: 7px;
   }
-  .volume{
+
+  .volume {
     padding-left: 6px;
     top: 27px;
   }
-  .volume img{
+
+  .volume img {
     transform: scale(0.8);
   }
-  .volumeBar{
+
+  .volumeBar {
     height: 3px;
     width: 4rem;
   }
-  
+
 }
