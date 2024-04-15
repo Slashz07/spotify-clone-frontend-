@@ -58,11 +58,29 @@ async function getSongInfo(playList) {
   return songInfo
 }
 
+async function getPlaylists() {
+  let playlistPage = await fetch(`http://127.0.0.1:5500/songs/`)
+  let pageText = await playlistPage.text()
+  let div = document.createElement('div')
+  div.innerHTML = pageText
+
+  let pageElements = songs.querySelectorAll('#files a');
+
+  let allPlaylists=[]
+  pageElements.forEach((element) => {
+    if (index > 0) {
+      let playlistTitle = element.getAttribute("title");
+      allPlaylists.push(playlistTitle);
+    }
+  });
+
+}
+
 
 async function main(songFolder) {
   let allSongs = await getSongInfo(songFolder)
   myMusic(allSongs.songNames[0], true)
-
+getPlaylists()
   let songList = document.querySelector(".songList ul")
   songList.innerHTML=``
   allSongs.songNames.forEach((songName, index) => {
