@@ -1,6 +1,7 @@
 
 let currentSong = new Audio()
-let currentPLaylist
+let currentPLaylist;
+
 const myMusic = (song, pauseSong = false) => {
 
   let displayName = document.querySelector(".songStats")
@@ -37,16 +38,14 @@ async function getSongInfo(playList) {
   let songs = document.createElement('div')
   songs.innerHTML = songPageText
 
-
   let songElements = songs.querySelectorAll('#files a');
-
   let songInfo = {
     songNames: []
   }
   songElements.forEach((element, index) => {
-    if (index > 0) {
+    if (index > 0 && element.title.includes(".mp3")) {
 
-      let songTitle = element.getAttribute("title");
+      let songTitle = element.title;
       const lastSpaceIndex = songTitle.lastIndexOf('.');
       if (lastSpaceIndex !== -1) {
         songTitle = songTitle.substring(0, lastSpaceIndex);
@@ -64,26 +63,42 @@ async function getPlaylists() {
   let div = document.createElement('div')
   div.innerHTML = pageText
 
-  let pageElements = songs.querySelectorAll('#files a');
-
-  let allPlaylists=[]
-  pageElements.forEach((element) => {
+  let pageElements = div.querySelectorAll('#files a');
+  let firstPlaylist = pageElements[1].title
+  pageElements.forEach(async (element, index) => {
     if (index > 0) {
       let playlistTitle = element.getAttribute("title");
-      allPlaylists.push(playlistTitle);
+
+      // fetching metadata of the playlist
+      let metaPage = await fetch(`http://127.0.0.1:5500/songs/${playlistTitle}/metaData.json`)
+      let metaContent = await metaPage.json()
+      let playlistContainer = document.querySelector(".playlist-container")
+
+      playlistContainer.innerHTML = playlistContainer.innerHTML +
+        `<div data-playlist=${playlistTitle} class="card">
+            <img src="./songs/${playlistTitle}/photo.jpeg" alt="">
+            <div class="play-icon">
+              <img src="./assets/play-button-pause.svg" alt="">
+            </div>
+            <h4>${metaContent.title}</h4>
+            <p>${metaContent.description}</p>
+          </div>`
     }
   });
 
+  main(firstPlaylist)
+  
+ 
 }
 
 
 async function main(songFolder) {
   let allSongs = await getSongInfo(songFolder)
   myMusic(allSongs.songNames[0], true)
-getPlaylists()
+
   let songList = document.querySelector(".songList ul")
-  songList.innerHTML=``
-  allSongs.songNames.forEach((songName, index) => {
+  songList.innerHTML = ``
+  allSongs.songNames.forEach((songName) => {
     songList.innerHTML = songList.innerHTML + ` <li>
               <img class="invert" src="./assets/music-icon.svg" alt="">
               <div class="song-info">
@@ -186,16 +201,18 @@ getPlaylists()
     currentSong.volume = parseInt(currentVol) / 100
   })
 
+  // Accessing songs from playlists-->
+  const allPlaylists = document.querySelectorAll(".playlist-container .card")
+  allPlaylists.forEach(curPlaylist => {
+    curPlaylist.addEventListener("click", async folder => {
+      console.log(folder.currentTarget.dataset.playlist)
+      await main(folder.currentTarget.dataset.playlist)
+    })
+  })
+
 }
 
-// Accessing songs from playlists-->
-const allPlaylists = document.querySelectorAll(".playlist-container .card")
-allPlaylists.forEach(curPlaylist => {
-  curPlaylist.addEventListener("click", async folder => {
-    console.log(folder.currentTarget.dataset)
-    await main(folder.currentTarget.dataset.playlist)
-  })
-})
+
 
 // play/pause button-->
 let playbtn = document.querySelector(".songPlayBtn")
@@ -210,6 +227,7 @@ playbtn.addEventListener('click', () => {
   }
 })
 
-let firstPlaylist = document.querySelector(".card")
-let playlistName = firstPlaylist.dataset.playlist
-main(playlistName)
+getPlaylists()
+
+
+
