@@ -59,6 +59,8 @@ body {
   border-radius: 7px;
   margin-top: 0.5rem;
   flex: 1;
+  display: flex;
+  flex-direction: column;
   position: relative;
 }
 
@@ -91,6 +93,7 @@ body {
 .songList {
   max-height: 52vh;
   overflow: scroll;
+  flex: 1;
 }
 
 .songList ul {
@@ -232,7 +235,7 @@ body {
 .right-body {
   background-color: #242424;
   flex: 1;
-  max-height: 70vh;
+  max-height: 77vh;
   overflow: auto;
 }
 
@@ -240,18 +243,22 @@ body {
   padding: 1.5rem 1rem;
 }
 
+.right-body h2 {
+  padding: 0.5rem 1rem;
+}
+
 .playlist-container {
   display: flex;
   flex-wrap: wrap;
   padding: 0.5rem;
-
+  margin-bottom: 4rem;
 }
 
 .card {
   display: flex;
   flex-direction: column;
   width: 20%;
-  height: 16rem;
+  height: 14rem;
   gap: 6px;
   border-radius: 11px;
   margin: 0.5rem 0;
@@ -416,6 +423,7 @@ body {
   width: 6rem;
   cursor: pointer;
 }
+
 .volume input[type="range"]::slider-thumb {
   width: 5px;
   height: 5px;

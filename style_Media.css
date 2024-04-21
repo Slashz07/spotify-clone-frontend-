@@ -7,7 +7,7 @@
 
   .card {
     width: 25%;
-    height: 16rem;
+    height: 14rem;
   }
 
   .playBox {
@@ -42,6 +42,7 @@
 
   .card {
     width: 33%;
+    height: 15rem;
   }
 
   .volume {
@@ -118,7 +119,7 @@
 
   .card {
     width: 33%;
-    height: 18rem;
+    height: 17rem;
   }
 
 
@@ -129,7 +130,7 @@
 
   .card {
     width: 50%;
-    height: 20rem;
+    height: 19rem;
   }
 }
 
@@ -202,6 +203,29 @@
   .volumeBar {
     height: 3px;
     width: 4rem;
+  }
+
+}
+
+@media (max-width: 375px) {
+  .nav-icons {
+    display: inline-flex;
+  }
+
+  .left {
+    width: 335px;
+  }
+
+  .right-buttons {
+    gap: 10px;
+  }
+
+  .card {
+    height: 23rem;
+  }
+  .songButtons{
+    width: 70%;
+    gap: 1.3rem;
   }
 
 }
