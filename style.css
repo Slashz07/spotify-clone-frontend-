@@ -186,6 +186,17 @@ body {
   padding: 0.5rem 0.6rem;
   text-align: center;
 }
+.nav-icons img{
+  opacity: 0.4;
+}
+.playlist-left:hover{
+opacity: 1;
+transform: scale(1.2);
+}
+.playlist-right:hover{
+opacity: 1;
+transform: scale(1.2);
+}
 
 .hamBurger {
   display: none;

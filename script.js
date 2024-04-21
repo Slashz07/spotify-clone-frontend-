@@ -131,7 +131,7 @@ async function getPlaylists() {
   // Accessing songs from playlists-->
 
   const allPlaylists = Array.from(document.querySelectorAll(".playlist-container .card"))
-  let playlistNum=0
+  let playlistNum = 0
   allPlaylists.forEach((curPlaylist, index) => {
     curPlaylist.addEventListener("click", async folder => {
       console.log(folder.currentTarget.dataset.playlist)
@@ -139,8 +139,8 @@ async function getPlaylists() {
       await main(folder.currentTarget.dataset.playlist)
     })
   })
-  
-  const prevPlaylist=document.querySelector(".playlist-left")
+
+  const prevPlaylist = document.querySelector(".playlist-left")
   const nextPlaylist = document.querySelector(".playlist-right")
   const playlistHeading = document.querySelector(".right-body h2")
   playlistHeading.innerText = `${playlistNames[0]}`
@@ -152,10 +152,10 @@ async function getPlaylists() {
 
     }
   })
-  
+
   nextPlaylist.addEventListener('click', async () => {
     if (playlistNum < allPlaylists.length - 1) {
-      playlistHeading.innerText =`${playlistNames[++playlistNum]}`
+      playlistHeading.innerText = `${playlistNames[++playlistNum]}`
       await main(allPlaylists[playlistNum].dataset.playlist)
 
     }
@@ -190,17 +190,18 @@ async function main(selectedPlaylist = "Angry_(mood)") {
   prevTrack.addEventListener('click', () => {
     console.log(prevSongIndex)
 
-    if (prevSongIndex !== null) {
-      if (prevSongIndex >= 0) {
-        console.log(prevSongIndex)
-        let prevSong = mySongs[prevSongIndex].querySelector(".name").innerText
-        myMusic(prevSong)
-      }
-      nextSongIndex = prevSongIndex + 1
-      if (prevSongIndex > 0) {
-        prevSongIndex -= 1
-      }
+    if (prevSongIndex == null)
+      prevSongIndex = 0
+    if (prevSongIndex >= 0) {
+      console.log(prevSongIndex)
+      let prevSong = mySongs[prevSongIndex].querySelector(".name").innerText
+      myMusic(prevSong)
     }
+    nextSongIndex = prevSongIndex + 1
+    if (prevSongIndex > 0) {
+      prevSongIndex -= 1
+    }
+
 
   })
 
@@ -219,12 +220,6 @@ async function main(selectedPlaylist = "Angry_(mood)") {
     }
 
   })
-
-
-
-
-
-
 
 
   // timeUpdate-->
