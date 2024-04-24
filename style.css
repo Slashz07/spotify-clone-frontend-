@@ -292,6 +292,7 @@ transform: scale(1.2);
   display: inline-flex;
   margin: 0 auto;
   border-radius: 11px;
+  height: 70%;
 }
 
 .play-icon {
@@ -306,6 +307,9 @@ transform: scale(1.2);
   text-align: center;
   transform: translateY(12px);
   opacity: 0;
+}
+.card p{
+  padding-bottom: 5px;
 }
 
 .card h4 {

@@ -79,6 +79,7 @@ async function getSongInfo(playList) {
   });
 
   myMusic(songInfo.songNames[0], true)
+  return songInfo
 }
 
 async function getPlaylists() {
@@ -172,17 +173,18 @@ async function main(selectedPlaylist = "Angry_(mood)") {
   let mySongs = Array.from(document.querySelectorAll(".songList ul li"))
   console.log(mySongs)
 
+  let nextSongIndex = 1
+  let prevSongIndex = null
+
   mySongs.forEach((e, index) => {
     e.addEventListener('click', () => {
       let music = e.querySelector(".name").innerText
       myMusic(music)
       nextSongIndex = index + 1
+      if(index!=0)
       prevSongIndex = index - 1
     })
   })
-
-  let nextSongIndex = 1
-  let prevSongIndex = null
 
 
   // playing prev song using the arrow-->
@@ -236,7 +238,7 @@ async function main(selectedPlaylist = "Angry_(mood)") {
 
   let songDuration = document.querySelector(".time")
   let songBarMarker = document.querySelector(".progressMarker")
-
+  songBarMarker.style.left=0+'%'
   currentSong.addEventListener("timeupdate", () => {
 
     songDuration.innerHTML = `<p>${runTime(currentSong.currentTime)}/${runTime(currentSong.duration)}</p>`
